@@ -25,6 +25,17 @@ Element *addAwal(Element *start, int id, char nama[]){
     return new_node;
 }
 
+Element *addAkhir(Element *start, int id, char nama[]){
+    Element *new_node = createElement(id, nama);
+    Element *ptr = start;
+    while(ptr->next != NULL){
+        ptr = ptr->next;
+    }
+    ptr->next = new_node;
+    new_node->prev = ptr;
+    return start;
+}
+
 void displayData(Element *start){
     Element *ptr = start;
     while(ptr!= NULL){
@@ -45,7 +56,8 @@ int main(){
         scanf("%d", &id);
         if(id != 0){
             scanf("%s", nama);
-            start = addAwal(start, id, nama);
+            // start = addAwal(start, id, nama);
+            start = addAkhir(start, id, nama);
         }
     }while(id != 0);
     displayData(start);
